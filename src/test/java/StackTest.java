@@ -4,45 +4,56 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StackTest {
-    Stack<String> st1, st2, st0;
-
+    Stack<String> fa0, fa1, fa2;
     @BeforeEach
     public void setUp() throws Exception {
-        st0 = new Stack<String>();
-        st1 = new Stack<String>();
-        st1.push("plop");
+        fa0 = new Stack<String>();
 
-        st2 = new Stack<String>();
-        st2.push("a");
-        st2.push("b");
-    }
-    @Test
-    void testIsEmpty() {
-        assertTrue(st0.isEmpty());
-        assertFalse(st1.isEmpty());
+        fa1 = new Stack<String>();
+        fa1.push("plop");
+
+        fa2 = new Stack<String>();
+        fa2.push("a");
+        fa2.push("b");
     }
 
     @Test
-    void testPeek() {
-        assertEquals(st1.peek(),"plop");
-        assertEquals(st2.peek(),"b");
+    public void testIsEmpty() {
+        assertTrue(fa0.isEmpty());
+        assertFalse(fa1.isEmpty());
     }
 
     @Test
-    void pop() {
-        st2.pop();
-        assertEquals(st2.peek(),"a");
+    public void testPush() {
+        assertTrue(fa0.isEmpty());
+        fa0.push("toto");
+        assertFalse(fa0.isEmpty());
     }
 
     @Test
-    void push() {
-        st0.push("String");
-        assertEquals(st0.peek(),"String");
-
+    public void TestSize() {
+        assertEquals(fa2.size(),2);
+        assertEquals(fa1.size(),1);
     }
 
     @Test
-    void search() {
+    public void testFront() {
+        assertEquals(fa2.front(),"b");
+        assertEquals(fa1.front(),"plop");
+    }
 
+    @Test
+    public void testPop() {
+        //exception
+        try{
+            fa0.pop();
+        }catch(Exception e){
+            //ok
+        }
+        assertEquals(fa1.pop(),"plop");
+        assertTrue(fa1.isEmpty());
+        assertEquals(fa2.pop(),"b");
+        assertEquals(fa2.pop(), "a");
+        assertTrue(fa2.isEmpty());
     }
 }

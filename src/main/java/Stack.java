@@ -1,42 +1,52 @@
 import java.util.LinkedList;
 
 public class Stack<E> {
-
-    private LinkedList<E> stack;
-
+    private LinkedList<E> queue;
     public Stack() {
-        this.stack = new LinkedList<>();
+        this.queue = new LinkedList<E>();
     }
-
     public boolean isEmpty() {
         boolean bool = false;
         try {
-            bool = stack.isEmpty();
+            bool = queue.isEmpty();
         }catch(Exception e){
             System.out.println(e.toString());
         }
         return bool;
     }
+    public void push(E elem) {
+        try{
+            queue.push(elem);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
 
-    public E peek() {
-        return stack.peek();
     }
-
     public E pop() {
-        return stack.pop();
+        E item = null;
+        try {
+            item = this.queue.pop();
+        }catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return item;
     }
-
-    public void push(E item) {
-        stack.push(item);
+    public int size() {
+        int s = 0;
+        try {
+            s = this.queue.size();
+        }catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return s;
     }
-
-    public int search(Object o) {
-        int cpt =0;
-        for (Object ot: this.stack
-             ) {
-            if (ot.equals(o)) {
-                cpt++;
-            }
-        }return cpt;
+    public E front() {
+        E item = null;
+        try {
+            item = this.queue.peekFirst();
+        }catch (Exception e){
+            System.out.println(e.toString());
+        }
+        return item;
     }
 }

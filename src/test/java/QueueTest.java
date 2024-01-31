@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class QueueTest {
     Queue<String> fa0, fa1, fa2;
+
     @BeforeEach
     public void setUp() throws Exception {
         fa0 = new Queue<String>();
@@ -31,29 +32,18 @@ class QueueTest {
     }
 
     @Test
-    public void TestSize() {
-        assertEquals(fa2.size(),2);
-        assertEquals(fa1.size(),1);
-    }
-
-    @Test
-    public void testFront() {
-        assertEquals(fa2.front(),"b");
-        assertEquals(fa1.front(),"plop");
-    }
-
-    @Test
     public void testPop() {
         //exception
         try{
             fa0.pop();
+            fail();
         }catch(Exception e){
             //ok
         }
         assertEquals(fa1.pop(),"plop");
         assertTrue(fa1.isEmpty());
-        assertEquals(fa2.pop(),"b");
         assertEquals(fa2.pop(), "a");
+        assertEquals(fa2.pop(),"b");
         assertTrue(fa2.isEmpty());
     }
 }
