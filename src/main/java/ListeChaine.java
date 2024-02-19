@@ -1,24 +1,34 @@
 public class ListeChaine {
-    private final int contenu;
-    private ListeChaine suivant;
-    public ListeChaine(int contenu, ListeChaine suivant) {
-        this.contenu = contenu;
-        this.suivant = suivant;
+    public String getContenu() {
+        return contenu;
     }
-     static int peek(ListeChaine a){
+
+    private final String contenu;
+    private ListeChaine suivant;
+
+    public ListeChaine(String contenu){
+        this.contenu = contenu;
+        this.suivant = null;
+    }
+     static String peek(ListeChaine a){
         return a.contenu;
     }
     static ListeChaine queue(ListeChaine a){
         return a.suivant;
     }
 
-     static ListeChaine push(int x, ListeChaine a){
-        return new ListeChaine(x,a);
+     static ListeChaine push(String x, ListeChaine a){
+        while(a.suivant != null){
+            a = a.suivant;
+        }
+        a.suivant = new ListeChaine(x);
+
+        return a.suivant;
     }
 
-     static boolean search(int x, ListeChaine a){
+     static boolean search(String x, ListeChaine a) {
         while (a != null) {
-            if( a.contenu == x ){
+            if( a.contenu.equals(x) ){
                 return true;
             }
             a = a.suivant;
@@ -26,21 +36,8 @@ public class ListeChaine {
         return false;
     }
     /*Delete first*/
-    static ListeChaine pop(int x, ListeChaine a){
-        if(a == null){
-            return a;
-        }
-        if(a.contenu == x){
-            return a.suivant;
-        }
-        ListeChaine b = a;
-        ListeChaine c = b.suivant;
-        for (; c != null; b = c, c = c.suivant){
-            if(c.contenu == x){
-                b.suivant = c.suivant;
-                break;
-            }
-        }
+    static ListeChaine pop(ListeChaine a){
+        a = a.suivant;
         return a;
     }
     static int size(ListeChaine a){
